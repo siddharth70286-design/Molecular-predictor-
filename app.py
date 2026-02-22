@@ -1,0 +1,89 @@
+import streamlit as st
+import streamlit.components.v1 as components
+from rdkit import Chem
+from rdkit.Chem import AllChem, Draw
+import py3Dmol
+from stmol import showmol
+import pubchempy as pcp
+
+components.html(
+    """
+    <script>
+    if (typeof Object.hasOwn === 'undefined') {
+        Object.hasOwn = function(obj, prop) {
+            return Object.prototype.hasOwnProperty.call(obj, prop);
+        };
+    }
+    </script>
+    """,
+    height=0,
+)
+
+@st.cache_data(show_spinner=False)
+def get_mol_object(user_input):
+    mol = Chem.MolFromSmiles(user_input)
+
+    if mol is None:
+        try:
+            compounds = pcp.get_compounds(user_input, 'name')
+            if compounds:
+                mol = Chem.MolFromSmiles(compounds[0].smiles)
+        except:
+            return None, "Search Error"
+
+    if mol is None:
+        return None, "Invalid Structure"
+
+    mol = Chem.AddHs(mol)
+    status = "Success"
+
+    params = AllChem.ETKDG()
+    if AllChem.EmbedMolecule(mol, params) == -1:
+        status = "Success (2D only)"
+    else:
+        AllChem.MMFFOptimizeMolecule(mol)
+
+    return mol, status
+
+
+def generate_2d_image(mol):
+    return Draw.MolToImage(mol, size=(300, 300))
+
+
+def generate_3d_view(mol):
+    mblock = Chem.MolToMolBlock(mol)
+    view = py3Dmol.view(width=400, height=400)
+    view.addModel(mblock, 'mol')
+    view.setStyle({'stick': {}, 'sphere': {'scale': 0.3}})
+    view.zoomTo()
+    return view
+
+
+st.set_page_config(layout="wide", page_title="Molecular Predictor")
+st.title("🔬 Molecular Structure Predictor")
+
+user_input = st.text_input(
+    "Enter Compound Name (e.g., Caffeine) or SMILES (e.g., CCO):",
+    "Caffeine"
+)
+
+if user_input:
+    molecule, status = get_mol_object(user_input)
+
+    if molecule:
+        st.success(f"Molecule Loaded: {user_input}")
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.subheader("2D Structure")
+            st.image(generate_2d_image(molecule))
+
+        with col2:
+            st.subheader("3D Interactive Viewer")
+            if "2D only" in status:
+                st.warning("Could not generate 3D coordinates for this structure.")
+            else:
+                view_3d = generate_3d_view(molecule)
+                showmol(view_3d, height=400, width=500)
+    else:
+        st.error("Could not find or process that molecule.")

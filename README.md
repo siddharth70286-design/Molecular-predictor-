@@ -1,79 +1,104 @@
+# Molecular Structure and Toxicity Predictor (MSTP) — V2
 
-#Molecular Structure Predictor
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Hugging%20Face-orange)](https://huggingface.co/spaces/ShiddharthTiwari11/molecular-structure-predictor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9+-green)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-red)](https://streamlit.io)
 
--Live Demo
-https://huggingface.co/spaces/ShiddharthTiwari11/molecular-structure-predictor
+A cheminformatics web application for molecular structure visualization and machine learning-based toxicity prediction. Built entirely on a mobile phone using RDKit, Streamlit, and scikit-learn.
 
--Overview
+## Live Demo
 
-1.Molecular Structure Predictor is an interactive web application that generates 2D and 3D molecular structures from compound names using PubChem API and RDKit.
+[Launch MSTP V2](https://huggingface.co/spaces/ShiddharthTiwari11/molecular-structure-predictor)
 
-2.The application allows users to visualize chemical structures instantly and interact with 3D molecular models directly in the browser.
+---
 
--Features
+## Features — V2
 
-1.Compound name search via PubChem
+- 2D Structure Visualization — renders molecular structures from SMILES strings
+- 3D Interactive Viewer — rotatable 3D molecular viewer
+- ML Toxicity Prediction — Random Forest classifier with confidence scoring
+- Molecular Descriptors — full descriptor table for each compound
+- PubChem Search — compound lookup by name via PubChem API
+- SMILES Input — direct SMILES string entry supported
 
-2.Automatic SMILES retrieval
+---
 
-3.2D molecular structure visualization
+## Toxicity Prediction Pipeline
 
-4.Interactive 3D molecular model rendering
+- Algorithm: Random Forest Classifier
+- Fingerprints: Morgan Fingerprints (radius 2, 2048 bits)
+- Training Data: DeepChem toxicity dataset sourced from AWS S3
+- Model File: tox_model.pkl (included in repository)
+- Validation: 99% confidence score on Caffeine benchmark
 
-5.Clean Streamlit interface
+---
 
-6.Deployed using Docker on Hugging Face Spaces
+## Repository Structure
 
--Tech Stack
+- streamlit_app.py — Main application, V2
+- tox_model.pkl — Trained Random Forest toxicity model
+- Dockerfile — Container configuration
+- README.md
+- LICENSE — MIT License
+- .gitignore
 
-1.Python
+---
 
-2.RDKit
+## Installation and Local Setup
 
-3.Streamlit
+git clone https://github.com/siddharth70286-design/Molecular-predictor-.git
+cd Molecular-predictor-
 
-4.PubChemPy
-
-5.stmol / py3Dmol
-
-6.Docker
-
-7.Hugging Face Spaces
-
--How It Works
-
-1.User enters a compound name.
-
-2.PubChem API fetches molecular data.
-
-3.RDKit generates the 2D structure.
-
-4.3D coordinates are generated and rendered interactively.
-
-5.Deployment
-
-6.The application is containerized using Docker and deployed on Hugging Face Spaces.
-
-7.Installation (Local Setup)
-
-8.Clone the repository:
-
-git clone https://github.com/your-username/your-repository-name.git
-
--Install dependencies:
-
--pip install -r requirements.txt
-
--Run the app:
+pip install streamlit rdkit scikit-learn py3Dmol stmol pubchempy joblib
 
 streamlit run streamlit_app.py
 
--License
+Or with Docker:
 
-This project is licensed under the MIT License.
+docker build -t mstp .
+docker run -p 8501:8501 mstp
 
--Author
+---
 
-Shiddharth Tiwari
+## Tech Stack
 
+- Frontend: Streamlit
+- Cheminformatics: RDKit
+- 3D Visualization: py3Dmol / stmol
+- Machine Learning: scikit-learn (Random Forest)
+- Fingerprinting: Morgan Fingerprints
+- Data Source: DeepChem / AWS S3
+- Deployment: Hugging Face Spaces
 
+---
+
+## Preprint and Citation
+
+A V1 preprint is published on ChemRxiv. A V2 preprint is forthcoming on ChemRxiv — covering the ML toxicity pipeline, 3D visualization module, and updated molecular descriptor framework.
+
+Citation details will be added here once the V2 preprint is published.
+
+Author: Shiddharth Tiwari
+ORCID: https://orcid.org/0009-0002-7308-3495
+Affiliation: FY BSc Chemistry, K.J. Somaiya College of Science and Commerce, Mumbai
+
+---
+
+## Roadmap
+
+- V1 — 2D structure visualization, SMILES and PubChem input (completed)
+- V2 — 3D viewer, ML toxicity prediction, molecular descriptors, confidence scoring (completed)
+- V3 — Graph Neural Network (GNN) integration for toxicity prediction (planned)
+
+---
+
+## Notable
+
+This application was designed and built entirely on a mobile phone. No laptop or desktop was used at any stage of development. The ML pipeline was first written by hand in a physical notebook before being coded.
+
+---
+
+## License
+
+MIT License. See LICENSE for details.

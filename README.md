@@ -1,104 +1,284 @@
-# Molecular Structure and Toxicity Predictor (MSTP) — V2
+# 🧪 Molecular Structure & Toxicity Predictor (MSTP) V3
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Hugging%20Face-orange)](https://huggingface.co/spaces/ShiddharthTiwari11/molecular-structure-predictor)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.9+-green)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-red)](https://streamlit.io)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)]()
+[![RDKit](https://img.shields.io/badge/RDKit-Cheminformatics-green.svg)]()
+[![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-red.svg)]()
+[![PyTorch Geometric](https://img.shields.io/badge/PyTorch-Geometric-orange.svg)]()
+[![Streamlit](https://img.shields.io/badge/Streamlit-Web%20Application-ff4b4b.svg)]()
 
-A cheminformatics web application for molecular structure visualization and machine learning-based toxicity prediction. Built entirely on a mobile phone using RDKit, Streamlit, and scikit-learn.
+An AI-powered cheminformatics platform integrating **Machine Learning**, **Graph Neural Networks**, and **Computational Chemistry** for molecular visualization, descriptor generation, and toxicity prediction.
 
-## Live Demo
+Developed as an academic research project to demonstrate modern AI applications in molecular science, cheminformatics, and drug discovery.
 
-[Launch MSTP V2](https://huggingface.co/spaces/ShiddharthTiwari11/molecular-structure-predictor)
+---
+PROJECT AT A GLANCE:
+
+| 🚀 Models              | 🤖 AI Architectures      | 🧬 Molecular Records | 🧪 Unique Molecules | 📊 Datasets |
+| ---------------------- | ------------------------ | -------------------: | ------------------: | ----------: |
+| Random Forest + 4 GNNs | GCN, GIN, GraphSAGE, GAT |        **2,669,958** |          **67,271** |      **10** |
+
+
+# 🌐 Live Application
+
+**Hugging Face Deployment**
+
+https://huggingface.co/spaces/ShiddharthTiwari11/molecular-structure-predictor/tree/main
 
 ---
 
-## Features — V2
+# 📖 Overview
 
-- 2D Structure Visualization — renders molecular structures from SMILES strings
-- 3D Interactive Viewer — rotatable 3D molecular viewer
-- ML Toxicity Prediction — Random Forest classifier with confidence scoring
-- Molecular Descriptors — full descriptor table for each compound
-- PubChem Search — compound lookup by name via PubChem API
-- SMILES Input — direct SMILES string entry supported
+Molecular Structure & Toxicity Predictor (MSTP) V3 is a browser-based cheminformatics application capable of accepting either a **compound name** or a **SMILES string** and automatically performing molecular analysis.
 
----
+The platform combines **RDKit**, **Random Forest**, and multiple **Graph Neural Network (GNN)** architectures to generate molecular structures, calculate molecular descriptors, and predict toxicity-related properties.
 
-## Toxicity Prediction Pipeline
-
-- Algorithm: Random Forest Classifier
-- Fingerprints: Morgan Fingerprints (radius 2, 2048 bits)
-- Training Data: DeepChem toxicity dataset sourced from AWS S3
-- Model File: tox_model.pkl (included in repository)
-- Validation: 99% confidence score on Caffeine benchmark
+Unlike traditional molecular visualization tools, MSTP integrates **multiple AI models** into a unified workflow, enabling researchers and students to perform computational molecular analysis without requiring local software installation.
 
 ---
 
-## Repository Structure
+# 🚀 Key Features
 
-- streamlit_app.py — Main application, V2
-- tox_model.pkl — Trained Random Forest toxicity model
-- Dockerfile — Container configuration
-- README.md
-- LICENSE — MIT License
-- .gitignore
+✅ Compound Name → SMILES Conversion
 
----
+✅ SMILES Input Support
 
-## Installation and Local Setup
+✅ Interactive 2D Molecular Visualization
 
-git clone https://github.com/siddharth70286-design/Molecular-predictor-.git
-cd Molecular-predictor-
+✅ Interactive 3D Molecular Visualization
 
-pip install streamlit rdkit scikit-learn py3Dmol stmol pubchempy joblib
+✅ Molecular Descriptor Calculation
 
-streamlit run streamlit_app.py
+✅ Toxicity Prediction
 
-Or with Docker:
+✅ Multi-Model AI Comparison
 
-docker build -t mstp .
-docker run -p 8501:8501 mstp
+✅ Browser-Based Interface
+
+✅ Hugging Face Deployment
 
 ---
 
-## Tech Stack
+# 🤖 Artificial Intelligence Models
 
-- Frontend: Streamlit
-- Cheminformatics: RDKit
-- 3D Visualization: py3Dmol / stmol
-- Machine Learning: scikit-learn (Random Forest)
-- Fingerprinting: Morgan Fingerprints
-- Data Source: DeepChem / AWS S3
-- Deployment: Hugging Face Spaces
+## Classical Machine Learning
 
----
+- Random Forest Classifier
 
-## Preprint and Citation
+## Graph Neural Networks
 
-A V1 preprint is published on ChemRxiv. A V2 preprint is forthcoming on ChemRxiv — covering the ML toxicity pipeline, 3D visualization module, and updated molecular descriptor framework.
+- Graph Convolutional Network (GCN)
+- Graph Isomorphism Network (GIN)
+- GraphSAGE
+- Graph Attention Network (GAT)
 
-Citation details will be added here once the V2 preprint is published.
-
-Author: Shiddharth Tiwari
-ORCID: https://orcid.org/0009-0002-7308-3495
-Affiliation: FY BSc Chemistry, K.J. Somaiya College of Science and Commerce, Mumbai
+These models collectively provide robust molecular property prediction and comparative AI analysis.
 
 ---
 
-## Roadmap
+# 📊 Dataset Engineering
 
-- V1 — 2D structure visualization, SMILES and PubChem input (completed)
-- V2 — 3D viewer, ML toxicity prediction, molecular descriptors, confidence scoring (completed)
-- V3 — Graph Neural Network (GNN) integration for toxicity prediction (planned)
+A unified master molecular dataset was developed by integrating benchmark datasets from the **MoleculeNet ecosystem** and other publicly available cheminformatics resources.
+
+The data engineering workflow included:
+
+- Dataset Integration
+- Molecular Standardization
+- Descriptor Generation (RDKit)
+- Label Harmonization
+- Duplicate Removal
+- Quality Control
+- Multi-task Dataset Construction
 
 ---
 
-## Notable
+## 📈 Dataset Statistics
 
-This application was designed and built entirely on a mobile phone. No laptop or desktop was used at any stage of development. The ML pipeline was first written by hand in a physical notebook before being coded.
+| Metric | Value |
+|---------|-------|
+| Total Molecular Records | **2,669,958** |
+| Unique Molecular Structures | **67,271** |
+| Benchmark Datasets Integrated | **10** |
+| Molecular Features | **20** |
+| Duplicate Records | **0** |
+| Learning Tasks | **Classification & Regression** |
 
 ---
 
-## License
+## Integrated Benchmark Datasets
 
-MIT License. See LICENSE for details.
+| Dataset | Records |
+|----------|--------:|
+| ToxCast | 1,535,080 |
+| BACE | 898,722 |
+| Tox21 | 85,777 |
+| HIV | 82,254 |
+| SIDER | 38,529 |
+| ESOL | 10,152 |
+| Lipophilicity | 8,400 |
+| BBBP | 6,150 |
+| ClinTox | 2,968 |
+| FreeSolv | 1,926 |
+
+---
+
+# 🧬 Molecular Descriptors
+
+The application automatically computes molecular descriptors using **RDKit**, including:
+
+- Molecular Weight
+- Exact Molecular Weight
+- LogP
+- Topological Polar Surface Area (TPSA)
+- Hydrogen Bond Donors
+- Hydrogen Bond Acceptors
+- Heavy Atom Count
+- Rotatable Bonds
+- Ring Count
+- Aromatic Ring Count
+- Fraction Csp³
+- Formal Charge
+- Molar Refractivity
+- Hetero Atom Count
+- Valence Electrons
+
+---
+
+# 💻 Technology Stack
+
+### Programming
+
+- Python
+
+### Cheminformatics
+
+- RDKit
+
+### Machine Learning
+
+- Scikit-learn
+- Random Forest
+
+### Deep Learning
+
+- PyTorch
+- PyTorch Geometric
+
+### Graph Neural Networks
+
+- GCN
+- GIN
+- GraphSAGE
+- GAT
+
+### Deployment
+
+- Streamlit
+- Hugging Face Spaces
+
+### Molecular Data
+
+- PubChem REST API
+- MoleculeNet Benchmark Datasets
+
+---
+
+# 📂 Repository Structure
+
+```
+Molecular-Structure-Toxicity-Predictor/
+
+│── streamlit_app.py
+│── predict.py
+│── requirements.txt
+│── Dockerfile
+│── README.md
+
+├── models/
+│      Random Forest
+│      GCN
+│      GIN
+│      GraphSAGE
+│      GAT
+
+├── dataset/
+
+├── assets/
+```
+
+---
+
+# 🔬 Scientific Applications
+
+This platform can be applied to:
+
+- Cheminformatics
+- Molecular Property Prediction
+- Toxicity Prediction
+- Drug Discovery
+- Molecular Visualization
+- AI-assisted Chemical Analysis
+- Computational Chemistry Education
+- Machine Learning Research
+
+---
+
+# 📚 Publications
+
+## ChemRxiv
+
+**Molecular Structure & Toxicity Predictor (MSTP)**
+
+---
+
+## Authorea
+
+**Framework for Low-Temperature Upgrading of Biodiesel-Derived Crude Glycerol: A Theoretical Techno-Economic Assessment**
+
+---
+
+# 🔮 Future Development (Version 4)
+
+The next version aims to introduce:
+
+- Novel Molecular Property Prediction
+- Reduced Dependence on External Databases
+- Advanced Graph Neural Networks
+- Confidence Calibration
+- Explainable Artificial Intelligence (XAI)
+- Hybrid Molecular Intelligence Pipeline
+
+---
+
+# 👨‍🔬 Developer
+
+**Shiddharth Tiwari**
+
+B.Sc. Chemistry
+
+KJ Somaiya College of Science and Commerce
+
+### Research Interests
+
+- Cheminformatics
+- Computational Chemistry
+- Molecular Artificial Intelligence
+- Graph Neural Networks
+- Drug Discovery
+- Scientific Software Development
+
+LinkedIn:
+www.linkedin.com/in/shiddharthcheminformatics30
+
+---
+
+# ⭐ Support
+
+If you found this project useful, please consider giving the repository a ⭐.
+
+Feedback, suggestions, and research collaborations are always welcome.
+
+---
+
+# 📄 License
+
+This project is released under the **MIT License**.

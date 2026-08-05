@@ -1,0 +1,5 @@
+tox_model.pkl filter=lfs diff=lfs merge=lfs -text
+tox_model[[:space:]](1).pkl filter=lfs diff=lfs merge=lfs -text
+GAT_ESOL.pth filter=lfs diff=lfs merge=lfs -text
+GAT_FreeSolv.pth filter=lfs diff=lfs merge=lfs -text
+GAT_Lipophilicity.pth filter=lfs diff=lfs merge=lfs -text
